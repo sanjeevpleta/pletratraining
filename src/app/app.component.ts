@@ -1,16 +1,21 @@
-import { Component } from '@angular/core';
-import { Platform } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { Nav, Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 
 import firebase, { Unsubscribe } from 'firebase';
 import { firebaseConfig } from './credentials';
 import { HomePage } from '../pages/home/home';
+import { ProfilePage } from '../pages/profile/profile';
+import { SettingsPage } from '../pages/settings/settings';
 @Component({
   templateUrl: 'app.html'
 })
 export class MyApp {
+    @ViewChild(Nav) nav: Nav;
+
     rootPage: any;
+    pages: Array<{ title: string, component: any }>;
 
   constructor(platform: Platform,
       statusBar: StatusBar,
@@ -28,6 +33,15 @@ export class MyApp {
               }
           });
 
+      this.pages = [
+          { title: 'Home', component: HomePage },
+          { title: 'Salesforce Workshop', component: HomePage },
+          { title: 'Salesforce Admin', component: HomePage },
+          { title: 'Salesforce Developer', component: HomePage },
+          { title: 'Profile', component: ProfilePage },
+          { title: 'Settings', component: SettingsPage }
+      ];
+
       platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
       // Here you can do any higher level native things you might need.
@@ -35,6 +49,12 @@ export class MyApp {
       splashScreen.hide();
       
     });
+  }
+
+  openPage(page) {
+      // Reset the content nav to have just this page
+      // we wouldn't want the back button to show in this scenario
+      this.nav.setRoot(page.component);
   }
 }
 
