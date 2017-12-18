@@ -1,0 +1,24 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Pletra training
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button (click)="addTraining()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons>	
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <h2>Salesforce workshop</h2>
+  <ion-list>
+
+    <ion-item *ngFor="let workshop of workshopData">
+      <p>Date: <strong>{{workshop.startDate}}</strong></p>
+      <p>Coat: {{workshop.cost}}</p>
+      <p>Location: {{workshop.location}}</p>
+    </ion-item>
+  </ion-list>
+</ion-content>
