@@ -1,5 +1,8 @@
 <ion-header>
   <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
     <ion-title>
       Pletra training
     </ion-title>
@@ -15,7 +18,7 @@
   <h2>Salesforce workshop</h2>
   <ion-list>
 
-    <ion-item *ngFor="let workshop of workshopData">
+    <ion-item *ngFor="let workshop of workshopData" (click)="goToDetail(workshop.id)">
       <p>Date: <strong>{{workshop.startDate}}</strong></p>
       <p>Coat: {{workshop.cost}}</p>
       <p>Location: {{workshop.location}}</p>
