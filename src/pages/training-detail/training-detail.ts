@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { WorkshopProvider } from '../../providers/workshop/workshop';
 
 /**
  * Generated class for the TrainingDetailPage page.
@@ -14,12 +15,21 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'training-detail.html',
 })
 export class TrainingDetailPage {
-
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    public currentEvent: any = {};
+    constructor(public navCtrl: NavController, public navParams: NavParams, public provider: WorkshopProvider) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad TrainingDetailPage');
-  }
+    ionViewDidLoad() {
+        this.provider
+            .getById(this.navParams.get('id'))
+            .on('value', eventData => {
+                this.currentEvent = eventData.val();
+                this.currentEvent.id = eventData.key;
+            });
+    }
+
+    register(): void {
+
+    }
 
 }
