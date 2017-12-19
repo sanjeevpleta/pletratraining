@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import firebase from 'firebase';
@@ -32,5 +32,40 @@ export class ProfileProvider {
   }
   updateDOB(birthDate: string): Promise<any> {
       return this.userProfile.update({ birthDate });
+  }
+
+  updateEmail(newEmail: string, password: string): Promise<any> {
+      const credential: firebase.auth.AuthCredential = firebase.auth.EmailAuthProvider.credential(
+          this.currentUser.email,
+          password
+      );
+      return this.currentUser
+          .reauthenticateWithCredential(credential)
+          .then(user => {
+              this.currentUser.updateEmail(newEmail).then(user => {
+                  this.userProfile.update({ email: newEmail });
+              });
+          })
+          .catch(error => {
+              console.error(error);
+          });
+  }
+
+  updatePassword(newPassword: string, oldPassword: string): Promise<any> {
+      const credential: firebase.auth.AuthCredential = firebase.auth.EmailAuthProvider.credential(
+          this.currentUser.email,
+          oldPassword
+      );
+
+      return this.currentUser
+          .reauthenticateWithCredential(credential)
+          .then(user => {
+              this.currentUser.updatePassword(newPassword).then(user => {
+                  console.log('Password Changed');
+              });
+          })
+          .catch(error => {
+              console.error(error);
+          });
   }
 }
