@@ -2,13 +2,6 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WorkshopProvider } from '../../providers/workshop/workshop';
 
-/**
- * Generated class for the TrainingDetailPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-training-detail',
@@ -20,16 +13,19 @@ export class TrainingDetailPage {
   }
 
     ionViewDidLoad() {
+        console.log("id : " + this.navParams.get('id'));
         this.provider
             .getById(this.navParams.get('id'))
             .on('value', eventData => {
+                console.log('event data : ' + eventData.val());
                 this.currentEvent = eventData.val();
+                console.log('current event = ' + this.currentEvent.cost);
                 this.currentEvent.id = eventData.key;
             });
     }
 
     register(): void {
-
+        this.navCtrl.push('RegisterPage', { 'eventData': this.currentEvent });
     }
 
 }

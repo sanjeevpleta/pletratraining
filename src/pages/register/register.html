@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Register</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <ion-list>
+    <ion-list-header><h2>{{currentEvent?.evntType}}</h2></ion-list-header>
+    <ion-item>
+      <ion-label>Date : </ion-label>
+      <ion-label>{{currentEvent?.startDate}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Location : </ion-label>
+      <ion-label>{{currentEvent?.location}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Cost : </ion-label>
+      <ion-label>{{currentEvent?.cost}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Name : </ion-label>
+      <ion-label>{{userProfile?.firstName}} {{userProfile?.lastName}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Email : </ion-label>
+      <ion-label>{{userProfile?.email}}</ion-label>
+    </ion-item>
+    <ion-item>
+      <ion-label>Phone : </ion-label>
+      <ion-label>{{userProfile?.email}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>
