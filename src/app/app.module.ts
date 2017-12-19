@@ -11,6 +11,7 @@ import { AuthProvider } from '../providers/auth/auth';
 import { ProfileProvider } from '../providers/profile/profile';
 import { CourseProvider } from '../providers/course/course';
 import { WorkshopProvider } from '../providers/workshop/workshop';
+import { PaymentProvider } from '../providers/payment/payment';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { WorkshopProvider } from '../providers/workshop/workshop';
     AuthProvider,
     ProfileProvider,
     CourseProvider,
-    WorkshopProvider
+    WorkshopProvider,
+    PaymentProvider
   ]
 })
 export class AppModule {}
