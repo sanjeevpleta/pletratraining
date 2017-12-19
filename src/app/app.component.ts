@@ -38,8 +38,8 @@ export class MyApp {
           { title: 'Salesforce Workshop', component: HomePage },
           { title: 'Salesforce Admin', component: HomePage },
           { title: 'Salesforce Developer', component: HomePage },
-          { title: 'Profile', component: ProfilePage },
-          { title: 'Settings', component: SettingsPage }
+          { title: 'Profile', component: 'ProfilePage' },
+          { title: 'Settings', component: 'SettingsPage' }
       ];
 
       platform.ready().then(() => {
