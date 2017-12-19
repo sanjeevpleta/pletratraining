@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+//import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { workshop } from '../../interface/workshop';
 import firebase from 'firebase';
@@ -48,7 +48,7 @@ export class WorkshopProvider {
       return this.WorkshopList;
   }
 
-  getById(key: string) {
+  getById(key: string): firebase.database.Reference {
       return this.WorkshopList.child(key);
   }
 
