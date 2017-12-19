@@ -31,7 +31,11 @@ export class HomePage {
         });
     }
 
-  addTraining() {
+  addTraining(): void {
       this.navCtrl.push(AddTrainingPage);
+    }
+
+  goToDetail(id): void {
+      this.navCtrl.push('TrainingDetailPage', {id: id});
   }
 }
