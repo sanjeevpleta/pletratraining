@@ -15,13 +15,18 @@
 </ion-header>
 
 <ion-content padding>
-  <h2>Salesforce workshop</h2>
-  <ion-list>
+  <h2>{{filter}}</h2>
+  <ion-list *ngIf="workshopData">
 
     <ion-item *ngFor="let workshop of workshopData" (click)="goToDetail(workshop.id)">
       <p>Date: <strong>{{workshop.startDate}}</strong></p>
       <p>Coat: {{workshop.cost}}</p>
       <p>Location: {{workshop.location}}</p>
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="!workshopData">
+    <ion-item>
+    <p>There is no data</p>
     </ion-item>
   </ion-list>
 </ion-content>

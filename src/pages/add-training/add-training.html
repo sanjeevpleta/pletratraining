@@ -16,9 +16,11 @@
 <ion-content padding>
   <ion-item>
     <ion-label stacked>Course Type :</ion-label>
-    <ion-input [(ngModel)]="eventType" type="text"
-               placeholder="Salesforce workshop">
-    </ion-input>
+    <ion-select [(ngModel)]="eventType" type='text'>
+      <ion-option>Salesforce Workshop</ion-option>
+        <ion-option>Salesforce Admin</ion-option>
+       <ion-option>Salesforce Developer</ion-option>
+    </ion-select> 
   </ion-item>
   <ion-item>
     <ion-label stacked>Cost</ion-label>
@@ -28,7 +30,7 @@
   </ion-item>
   <ion-item>
     <ion-label stacked>Start date :</ion-label>
-    <ion-datetime displayFormat="D MMM, YY" pickerFormat="DD MMM YYYY"
+    <ion-datetime displayFormat="D MMM, YY" min={{minDate}} max={{maxDate}} pickerFormat="DD MMM YYYY"
                   [(ngModel)]="eventDate">
     </ion-datetime>
   </ion-item>
@@ -39,7 +41,7 @@
     </ion-input>
   </ion-item>
   <button ion-button block
-          (click)="createTraining(eventCost, eventDate, eventLocation)">
+          (click)="createTraining(eventCost, eventDate, eventLocation, eventType)">
     Create Training
   </button>
 </ion-content>

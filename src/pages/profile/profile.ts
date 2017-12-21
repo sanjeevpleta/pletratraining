@@ -114,4 +114,8 @@ export class ProfilePage {
       });
       alert.present();
   }
+
+  updateMobile(mobileNumber: number): void {
+      this.profileProvider.updateMobile(mobileNumber);
+  }
 }
