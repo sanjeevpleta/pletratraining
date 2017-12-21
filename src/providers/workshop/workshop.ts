@@ -28,12 +28,12 @@ export class WorkshopProvider {
   //CreateWorkShop(workshopData: workshop): firebase.database.ThenableReference {
   //    return this.WorkshopList.push(workshopData);
   //}
-  CreateWorkShop(eventCost: number, eventDate: Date, eventLocation: string): firebase.database.ThenableReference {
+  CreateWorkShop(eventCost: number, eventDate: Date, eventLocation: string, eventType: string): firebase.database.ThenableReference {
       return this.WorkshopList.push({
           cost: eventCost,
           startDate: eventDate,
           location: eventLocation,
-          evntType: "Salesforce Workshop"
+          eventType: eventType
       });
   }
 

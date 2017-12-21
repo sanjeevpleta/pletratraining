@@ -34,6 +34,11 @@ export class ProfileProvider {
       return this.userProfile.update({ birthDate });
   }
 
+
+  updateMobile(mobileNumber: number): Promise<any> {
+      return this.userProfile.update({ mobileNumber });
+  }
+
   updateEmail(newEmail: string, password: string): Promise<any> {
       const credential: firebase.auth.AuthCredential = firebase.auth.EmailAuthProvider.credential(
           this.currentUser.email,
