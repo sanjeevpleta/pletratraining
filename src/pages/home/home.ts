@@ -4,6 +4,7 @@ import { NavController, NavParams } from 'ionic-angular';
 import { AddTrainingPage } from '../add-training/add-training';
 
 import { WorkshopProvider } from '../../providers/workshop/workshop';
+import { ProfileProvider } from '../../providers/profile/profile';
 //import { workshop } from '../../interface/workshop';
 
 @Component({
@@ -14,10 +15,13 @@ export class HomePage {
 
     public workshopData: Array<any> = null;
     public filter: string;
+    public isAdmin: boolean = false;
 
-    constructor(public navCtrl: NavController, public navParam: NavParams, public provider: WorkshopProvider) {
+    constructor(public navCtrl: NavController,
+        public navParam: NavParams,
+        public provider: WorkshopProvider,
+        public publicProvider: ProfileProvider) {
         var p: string = this.navParam.get('param');
-
         switch (p) {
             case 'SW':
                 this.filter = 'Salesforce Workshop';
@@ -31,6 +35,10 @@ export class HomePage {
             default:
                 this.filter = '';
         }
+
+
+        
+        //console.log('user = ' + user);
     }
 
     ionViewDidLoad() {
@@ -48,6 +56,20 @@ export class HomePage {
                 return false;
             });
         });
+
+        this.isAdmin = this.getAdmin();
+    }
+
+    getAdmin(): boolean {
+        var retVal: boolean = false;
+        this.publicProvider.getUserProfile().on('value', userProfileSnapshot => {
+            //console.log(userProfileSnapshot.val());
+            if (userProfileSnapshot.val().email.indexOf("@pletratech.com") > 0) {
+                retVal = true;
+            }
+
+        });
+        return retVal;  
     }
 
   addTraining(): void {

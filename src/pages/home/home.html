@@ -7,7 +7,7 @@
       Pletra training
     </ion-title>
     <ion-buttons end>
-      <button ion-button (click)="addTraining()">
+      <button *ngIf="isAdmin" ion-button (click)="addTraining()">
         <ion-icon name="add"></ion-icon>
       </button>
     </ion-buttons>	
