@@ -7,6 +7,7 @@ import {
 } from 'ionic-angular';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { AuthProvider } from '../../providers/auth/auth';
+import { HomePage } from '../home/home';
 
 
 @IonicPage()
@@ -117,5 +118,9 @@ export class ProfilePage {
 
   updateMobile(mobileNumber: number): void {
       this.profileProvider.updateMobile(mobileNumber);
+  }
+
+  goToHome(): void {
+      this.navCtrl.setRoot(HomePage);
   }
 }
