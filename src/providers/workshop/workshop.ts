@@ -14,7 +14,7 @@ export class WorkshopProvider {
                 console.log('workshop list : ' + this.WorkshopList);
             }
         });
-  }
+    }
 
   addWorkshop(workshopData: workshop): Promise<any> {
       var newWorkshopKey = firebase.database().ref().child(`workshop`).push().key;
