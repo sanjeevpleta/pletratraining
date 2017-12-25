@@ -28,8 +28,13 @@
       <ion-label>Cost : </ion-label>
       <ion-label>{{currentEvent?.cost}}</ion-label>
     </ion-item>
+    <ion-item *ngIf="currentEvent?.status != null">
+      <ion-label>Status: </ion-label>
+      <ion-label>{{currentEvent?.status}}</ion-label>
+    </ion-item>
     <button ion-button block
-            (click)="register()">
+            (click)="register()"
+            *ngIf="currentEvent?.status == null">
       Register
     </button>
   </ion-list>

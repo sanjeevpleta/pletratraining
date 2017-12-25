@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WorkshopProvider } from '../../providers/workshop/workshop';
+import { ProfileProvider } from '../../providers/profile/profile';
 
 @IonicPage()
 @Component({
@@ -9,11 +10,32 @@ import { WorkshopProvider } from '../../providers/workshop/workshop';
 })
 export class TrainingDetailPage {
     public currentEvent: any = {};
-    constructor(public navCtrl: NavController, public navParams: NavParams, public provider: WorkshopProvider) {
-  }
+    public registeredEvents: Array<any> = null;
+    constructor(public navCtrl: NavController,
+        public navParams: NavParams,
+        public provider: WorkshopProvider,
+        public profileProvider: ProfileProvider
+    ) {
+    }
+
+    getRegisteredEvents(): void {
+        this.profileProvider.getRegisteredEvents().on('value', snap => {
+            this.registeredEvents = [];
+            snap.forEach(data => {
+                //let value: any = this.getEvent(data.val().eventId);
+                //console.log('value = ' + value);
+                this.registeredEvents.push({
+                    status: data.val().status,
+                    eventId: data.val().eventId
+                });
+                return false;
+            });
+        });
+    }
 
     ionViewDidLoad() {
         console.log("id : " + this.navParams.get('id'));
+        this.getRegisteredEvents();
         this.provider
             .getById(this.navParams.get('id'))
             .on('value', eventData => {
@@ -21,7 +43,20 @@ export class TrainingDetailPage {
                 this.currentEvent = eventData.val();
                 console.log('current event = ' + this.currentEvent.cost);
                 this.currentEvent.id = eventData.key;
+                this.currentEvent.status = this.getRegisteredStatus(eventData.key);
             });
+    }
+
+    getRegisteredStatus(eventId: string): string {
+        let retVal: string = null;
+        if (this.registeredEvents.length > 0) {
+            this.registeredEvents.forEach(data => {
+                if (data.eventId == eventId) {
+                    retVal = data.status;
+                }
+            });
+        }
+        return retVal;
     }
 
     register(): void {
