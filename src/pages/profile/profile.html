@@ -71,8 +71,29 @@
       </ion-grid>
     </ion-item>
   </ion-list>
+  <ion-list inset *ngIf="registeredEvents?.length > 0">
+    <h3>Registered events</h3>
+    <ion-item *ngFor="let event of registeredEvents">
+      <ion-grid>
+        <ion-row>
+          <ion-col>{{event.eventType}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Date: {{event.date}}</ion-col>
+          <ion-col>Location: {{event.location}}</ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>Status: {{event.status}}</ion-col>
+          <ion-col>
+            <button ion-button clear *ngIf="event.status=='Awaiting'" (click)="unRegister(event.eventId)">UnRegister</button>
+          </ion-col>
+        </ion-row>
+        </ion-grid>
+    </ion-item>
+  </ion-list>
   <button ion-button clear
           (click)="goToHome()">
     Home
   </button>
 </ion-content>
+

@@ -8,6 +8,7 @@ import {
 import { ProfileProvider } from '../../providers/profile/profile';
 import { AuthProvider } from '../../providers/auth/auth';
 import { HomePage } from '../home/home';
+import { WorkshopProvider } from '../../providers/workshop/workshop';
 
 
 @IonicPage()
@@ -18,18 +19,61 @@ import { HomePage } from '../home/home';
 export class ProfilePage {
     public userProfile: any;
     public birthDate: string;
+    public registeredEvents: Array<any> = null;
     constructor(public navCtrl: NavController,
         public alertCtrl: AlertController,
         public authProvider: AuthProvider,
-        public profileProvider: ProfileProvider) {
+        public profileProvider: ProfileProvider,
+        public eventProvider: WorkshopProvider
+    ) {
   }
 
   ionViewDidLoad() {
       this.profileProvider.getUserProfile().on('value', userProfileSnapshot => {
           this.userProfile = userProfileSnapshot.val();
           this.birthDate = userProfileSnapshot.val().birthDate;
+          //userProfileSnapshot.val().registeredEvents.forEach(snap => {
+          //    this.registeredEvents.push({
+          //        status: snap.val().status
+          //    });
+          //});
       });
+
+      this.profileProvider.getRegisteredEvents().on('value', snap => {
+          this.registeredEvents = [];
+          snap.forEach(data => {
+              let value: any = this.getEvent(data.val().eventId);
+              console.log('value = ' + value);
+              this.registeredEvents.push({
+                  eventType: value.eventType,
+                  date: value.startDate,
+                  location: value.location,
+                  status: data.val().status,
+                  eventId: data.key
+              });
+              return false;
+          });
+      });
+
+      //console.log('Profile = ' + this.userProfile.registeredEvents);
   }
+  getEvent(eventID: string): any {
+      let value: any = '';
+      //console.log('event id = ' + eventID);
+      this.eventProvider
+          .getById(eventID)
+          .on('value', eventData => {
+              console.log('eventdata = ' + eventData.val().eventType);
+              value = eventData.val()
+          });
+      return value;
+  }
+
+  unRegister(key: string): void {
+      //console.log("key = " + key);
+      this.profileProvider.unRegister(key);
+  }
+
   logOut(): void {
       this.authProvider.logoutUser().then(() => {
           this.navCtrl.setRoot('LoginPage');
