@@ -3,12 +3,6 @@ import { Injectable } from '@angular/core';
 
 import firebase from 'firebase';
 
-/*
-  Generated class for the ProfileProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class ProfileProvider {
 
@@ -27,9 +21,18 @@ export class ProfileProvider {
       return this.userProfile;
   }
 
+  getRegisteredEvents(): firebase.database.Reference {
+      return this.userProfile.child('registeredEvents');
+  };
+
+  unRegister(eventId: string): void {
+      this.userProfile.child('registeredEvents').child(eventId).remove();
+  };
+
   updateName(firstName: string, lastName: string): Promise<any> {
       return this.userProfile.update({ firstName, lastName });
-  }
+  }
+
   updateDOB(birthDate: string): Promise<any> {
       return this.userProfile.update({ birthDate });
   }
