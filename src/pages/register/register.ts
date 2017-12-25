@@ -1,14 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { WorkshopProvider } from '../../providers/workshop/workshop';
+//import { WorkshopProvider } from '../../providers/workshop/workshop';
 import { ProfileProvider } from '../../providers/profile/profile';
-
-/**
- * Generated class for the RegisterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import { PaymentProvider } from '../../providers/payment/payment';
 
 @IonicPage()
 @Component({
@@ -19,7 +13,7 @@ export class RegisterPage {
     public currentEvent: any = {};
     public userProfile: any = {};
     constructor(public navCtrl: NavController, public navParams: NavParams,
-        public provider: WorkshopProvider,
+        public provider: PaymentProvider,
         public profileProvider: ProfileProvider) {
   }
 
@@ -32,4 +26,8 @@ export class RegisterPage {
       });
   }
 
+  Confirm(): void {
+      this.provider.register(this.currentEvent.id);
+      this.navCtrl.push('ConfirmPage');
+  }
 }
