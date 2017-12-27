@@ -7,21 +7,31 @@
       Pletra training
     </ion-title>
     <ion-buttons end>
+      <img *ngIf="isAdmin==false" src="assets/imgs/ptLogo.jpg" width=100>
       <button *ngIf="isAdmin" ion-button (click)="addTraining()">
         <ion-icon name="add"></ion-icon>
+        
       </button>
+      
+        
     </ion-buttons>	
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content padding class="bg-style">
   <h2>{{filter}}</h2>
   <ion-list *ngIf="workshopData">
 
-    <ion-item *ngFor="let workshop of workshopData" (click)="goToDetail(workshop.id)">
+    <ion-item *ngFor="let workshop of workshopData" (click)="goToDetail(workshop.id)" class="item-md">
       <p>Date: <strong>{{workshop.startDate}}</strong></p>
-      <p>Coat: {{workshop.cost}}</p>
+      <p>Cost: {{workshop.cost}}</p>
       <p>Location: {{workshop.location}}</p>
+      <p>Duration: {{workshop.duration}}</p>   
+    </ion-item>
+  </ion-list>
+  <ion-list *ngIf="workshopData?.length==0">
+    <ion-item>
+    <p>There is no data</p>
     </ion-item>
   </ion-list>
 </ion-content>

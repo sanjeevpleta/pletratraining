@@ -12,6 +12,7 @@
     </button>
     <ion-title>Profile</ion-title>
     <ion-buttons end>
+            <img src="assets/imgs/ptLogo.jpg" width=100>
       <button ion-button icon-only (click)="logOut()">
         <ion-icon name="log-out"></ion-icon>
       </button>
@@ -21,12 +22,14 @@
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="bg-style">
   <ion-list>
-    <ion-list-header>
+    
+      <h3>
       Personal Information
-    </ion-list-header>
-    <ion-item (click)="updateName()">
+      </h3>
+    
+    <ion-item (click)="updateName()" class="item-md">
       <ion-grid>
         <ion-row>
           <ion-col col-6> Name </ion-col>
@@ -39,15 +42,16 @@
         </ion-row>
       </ion-grid>
     </ion-item>
-    <ion-item>
+    <ion-item class="item-md">
       <ion-label class="dob-label">Date of Birth</ion-label>
       <ion-datetime displayFormat="MMM D, YYYY" pickerFormat="D MMM YYYY" [(ngModel)]="birthDate" (ionChange)="updateDOB(birthDate)"></ion-datetime>
     </ion-item>
-    <ion-item>
+    
+    <ion-item class="item-md">
           <ion-label class="dob-label"> Mobile# </ion-label>
             <ion-input [(ngModel)]="mobileNumber" type="tel" (ionChange)="updateMobile(mobileNumber)"></ion-input>   
     </ion-item>
-    <ion-item (click)="updateEmail()">
+    <ion-item (click)="updateEmail()" class="item-md">
       <ion-grid>
         <ion-row>
           <ion-col col-6> Email </ion-col>
@@ -60,7 +64,7 @@
         </ion-row>
       </ion-grid>
     </ion-item>
-    <ion-item (click)="updatePassword()">
+    <ion-item (click)="updatePassword()" class="item-md">
       <ion-grid>
         <ion-row>
           <ion-col col-6> Password </ion-col>
@@ -71,9 +75,9 @@
       </ion-grid>
     </ion-item>
   </ion-list>
-  <ion-list inset *ngIf="registeredEvents?.length > 0">
+  <ion-list  *ngIf="registeredEvents?.length > 0">
     <h3>Registered events</h3>
-    <ion-item *ngFor="let event of registeredEvents">
+    <ion-item *ngFor="let event of registeredEvents" class="item-md">
       <ion-grid>
         <ion-row>
           <ion-col>{{event.eventType}}</ion-col>
@@ -96,4 +100,3 @@
     Home
   </button>
 </ion-content>
-

@@ -8,40 +8,49 @@
 
   <ion-navbar>
     <ion-title>New Training</ion-title>
+    <ion-buttons end>
+      <img src="assets/imgs/ptLogo.jpg" width=100>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-  <ion-item>
+<ion-content padding class="bg-style">
+  <ion-item class="item-md">
     <ion-label stacked>Course Type :</ion-label>
     <ion-select [(ngModel)]="eventType" type='text'>
       <ion-option>Salesforce Workshop</ion-option>
         <ion-option>Salesforce Admin</ion-option>
        <ion-option>Salesforce Developer</ion-option>
     </ion-select> 
-  </ion-item>
-  <ion-item>
+  </ion-item >
+  <ion-item class="item-md">
     <ion-label stacked>Cost</ion-label>
     <ion-input [(ngModel)]="eventCost" type="number"
                placeholder="How much are you spending?">
     </ion-input>
+  </ion-item >
+  <ion-item class="item-md">
+    <ion-label stacked>Duration</ion-label>
+    <ion-input [(ngModel)]="eventDuration" type="string"
+               placeholder="set course duration">
+    </ion-input>
   </ion-item>
-  <ion-item>
+  <ion-item class="item-md">
     <ion-label stacked>Start date :</ion-label>
     <ion-datetime displayFormat="D MMM, YY" min={{minDate}} max={{maxDate}} pickerFormat="DD MMM YYYY"
                   [(ngModel)]="eventDate">
     </ion-datetime>
   </ion-item>
-  <ion-item>
+  <ion-item class="item-md">
     <ion-label stacked>Location :</ion-label>
     <ion-input [(ngModel)]="eventLocation" type="text"
                placeholder="Location">
     </ion-input>
   </ion-item>
   <button ion-button block
-          (click)="createTraining(eventCost, eventDate, eventLocation, eventType)">
+          (click)="createTraining(eventCost, eventDuration,eventDate, eventLocation, eventType)">
     Create Training
   </button>
 </ion-content>

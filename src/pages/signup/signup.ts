@@ -7,12 +7,12 @@ import {
     LoadingController,
     NavController
 } from 'ionic-angular';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
-//import { HomePage } from '../home/home';
-//import { ProfilePage } from '../profile/profile';
-
+import { HomePage } from '../home/home';
+import { ProfilePage } from '../profile/profile';
 @IonicPage()
 @Component({
   selector: 'page-signup',
@@ -21,7 +21,7 @@ import { EmailValidator } from '../../validators/email';
 export class SignupPage {
     public signupForm: FormGroup;
     public loading: Loading;
-
+           
     constructor(public navCtrl: NavController,
         public authProvider: AuthProvider,
         public loadingCtrl: LoadingController,
@@ -72,5 +72,4 @@ export class SignupPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
   }
-
 }

@@ -8,14 +8,19 @@
 
   <ion-navbar>
     <ion-title>Sign up</ion-title>
+	<ion-buttons end>
+        <img src="assets/imgs/ptLogo.jpg" width=100>
+    </ion-buttons>
   </ion-navbar>
+	
 
 </ion-header>
 
 
 <ion-content padding>
-  <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
-    <ion-item>
+  <form [formGroup]="signupForm" (submit)="signupUser()" novalidate >
+    
+	  <ion-item>
       <ion-label stacked>Email</ion-label>
       <ion-input formControlName="email" type="email" placeholder="Your email address"
                  [class.invalid]="!signupForm.controls.email.valid && blur">
@@ -35,8 +40,12 @@
     signupForm.controls.password.touched">
       <p>Your password needs more than 6 characters.</p>
     </ion-item>
-    <button ion-button block type="submit" [disabled]="!signupForm.valid">
-      Create an Account
+    <button ion-button block type="submit" color="primary"[disabled]="!signupForm.valid">
+        Next
     </button>
-  </form>
+	<img src="assets/imgs/pletra.jpeg" height=250>
+    
+	</form>
+		
+  
 </ion-content>

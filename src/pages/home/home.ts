@@ -50,7 +50,8 @@ export class HomePage {
                     id: snap.key,
                     startDate: snap.val().startDate,
                     cost: snap.val().cost,
-                    location: snap.val().location
+                    location: snap.val().location,
+                    duration: snap.val().duration
                 });
             }
                 return false;

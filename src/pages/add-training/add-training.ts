@@ -20,6 +20,7 @@ export class AddTrainingPage {
     public eventDate: Date;
     public eventLocation: string;
     public eventCost: number;
+    public eventDuration: string;
     public minDate: string;
     public maxDate: string;
 
@@ -35,10 +36,10 @@ export class AddTrainingPage {
     }
 
 
-    setWorkshop(eventCost: number, eventDate: Date, eventLocation: string) {
+    setWorkshop(eventCost: number, eventDuration: string , eventDate: Date, eventLocation: string ) {
         console.log('location : ' + eventLocation);
         console.log('cost : ' + eventCost);
-
+         
         //this.newWorkshop.cost = 300;
         //this.newWorkshop.startDate = eventDate;
         //this.newWorkshop.location = eventLocation;
@@ -48,12 +49,12 @@ export class AddTrainingPage {
 
     }
 
-    createTraining(eventCost: number, eventDate: Date, eventLocation: string, eventType: string): void {
+    createTraining(eventCost: number,  eventDuration: string,eventDate: Date, eventLocation: string, eventType: string): void {
         //this.setWorkshop(eventCost, eventDate, eventLocation);
         console.log('In create training');
-        this.provider.CreateWorkShop(eventCost, eventDate, eventLocation, eventType)
+        this.provider.CreateWorkShop(eventCost, eventDuration , eventDate, eventLocation, eventType)
             .then(newTraining => {
-                this.navCtrl.pop();
+                this.navCtrl.pop(); 
             })
   }
 
