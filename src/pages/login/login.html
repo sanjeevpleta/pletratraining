@@ -1,31 +1,33 @@
-<!--
+	<!--
   Generated template for the LoginPage page.
 
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
 <ion-header>
-
   <ion-navbar>
     <ion-title>Login</ion-title>
-  </ion-navbar>
-
+	<ion-buttons end>
+        <img src="assets/imgs/ptLogo.jpg" width=100>
+    </ion-buttons>
+  </ion-navbar> 
+  
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="bg-style">
   <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
-    <ion-item>
+    <ion-item class="item-md">
       <ion-label stacked>Email</ion-label>
       <ion-input formControlName="email" type="email" placeholder="Email address"></ion-input>
     </ion-item>
-    <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.dirty">
+    <ion-item class="error-message" *ngIf="!loginForm.controls.email.valid && loginForm.controls.email.dirty" >
       <p>Please enter a valid email address.</p>
     </ion-item>
 
-    <ion-item>
+    <ion-item class="item-md">
       <ion-label stacked>Password</ion-label>
-      <ion-input formControlName="password" type="password" placegolder="Password"
+      <ion-input formControlName="password" type="password" placeholder="Password"
                  [class.invalid]="!loginForm.controls.password.valid && blur"></ion-input>
     </ion-item>
     <ion-item class="error-message" *ngIf="!loginForm.controls.password.valid && loginForm.controls.password.dirty">
@@ -38,8 +40,10 @@
   </form>
 
   <button ion-button block clear (click)="goToSignup()">Sign up</button>
-
   <button ion-button block clear (click)="goToResetPassword()">
     Forgot password
   </button>
+  <form>
+  <img src="assets/imgs/pletra.jpeg" height=180>
+  </form>
 </ion-content>
