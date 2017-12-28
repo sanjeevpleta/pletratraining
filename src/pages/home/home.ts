@@ -6,7 +6,6 @@ import { AddTrainingPage } from '../add-training/add-training';
 import { WorkshopProvider } from '../../providers/workshop/workshop';
 import { ProfileProvider } from '../../providers/profile/profile';
 //import { workshop } from '../../interface/workshop';
-
 @Component({
     selector: 'page-home',
     templateUrl: 'home.html'
@@ -21,6 +20,7 @@ export class HomePage {
     public Developer: boolean = false;
     public filter: string;
     public isAdmin: boolean = false;
+    public registeredEvents: Array<any> = null;
 
     constructor(public navCtrl: NavController,
         public navParam: NavParams,
@@ -49,6 +49,8 @@ export class HomePage {
     }
 
     ionViewDidLoad() {
+        this.getRegisteredEvents();
+        console.log("id : " + this.navParam.get('id'));
         this.provider.get().on('value', workshopListSnapshot => {
             this.workshopData = this.Getdata(workshopListSnapshot, 'Salesforce Workshop');
             this.SalesforceAdmin = this.Getdata(workshopListSnapshot, 'Salesforce Admin');
@@ -57,7 +59,7 @@ export class HomePage {
 
         this.isAdmin = this.getAdmin();
     }
-
+    
     Getdata(data: any, filter: string): Array<any> {
         var array: Array<any> = [];
         data.forEach(snap => {
@@ -66,7 +68,8 @@ export class HomePage {
                     id: snap.key,
                     startDate: snap.val().startDate,
                     cost: snap.val().cost,
-                    location: snap.val().location
+                    location: snap.val().location,
+                    duration:snap.val().duration
                 });
             }
             return false;
@@ -92,5 +95,20 @@ export class HomePage {
 
     goToDetail(id): void {
         this.navCtrl.push('TrainingDetailPage', { id: id });
+    }
+
+    getRegisteredEvents(): void {
+        this.publicProvider.getRegisteredEvents().on('value', snap => {
+            this.registeredEvents = [];
+            snap.forEach(data => {
+                //let value: any = this.getEvent(data.val().eventId);
+                //console.log('value = ' + value);
+                this.registeredEvents.push({
+                    status: data.val().status,
+                    eventId: data.val().eventId
+                });
+                return false;
+            });
+        });
     }
 }
