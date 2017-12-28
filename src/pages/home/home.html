@@ -21,27 +21,30 @@
     <h4>Salesforce workshop</h4>
     <ion-item *ngFor="let workshop of workshopData" (click)="goToDetail(workshop.id)" class="item-md">
       <p>Date: <strong>{{workshop.startDate}}</strong></p>
-      <p>Coat: {{workshop.cost}}</p>
+      <p>Cost: {{workshop.cost}}</p>
       <p>Location: {{workshop.location}}</p>
-      <p>Duration: {{workshop.duration}}</p> 
+      <p>Duration: {{workshop.duration}}</p>
+      
     </ion-item>
   </ion-list>
   <ion-list *ngIf="Admin">
     <h4>Salesforce Admin</h4>
     <ion-item *ngFor="let workshop of SalesforceAdmin" (click)="goToDetail(workshop.id)" class="item-md">
       <p>Date: <strong>{{workshop.startDate}}</strong></p>
-      <p>Coat: {{workshop.cost}}</p>
+      <p>Cost: {{workshop.cost}}</p>
       <p>Location: {{workshop.location}}</p>
-      <p>Duration: {{workshop.duration}}</p> 
+      <p>Duration: {{workshop.duration}}</p>
+      
     </ion-item>
   </ion-list>
   <ion-list *ngIf="Developer">
     <h4>Salesforce Developer</h4>
     <ion-item *ngFor="let workshop of SalesforceDeveloper" (click)="goToDetail(workshop.id)" class="item-md">
       <p>Date: <strong>{{workshop.startDate}}</strong></p>
-      <p>Coat: {{workshop.cost}}</p>
+      <p>Cost: {{workshop.cost}}</p>
       <p>Location: {{workshop.location}}</p>
-      <p>Duration: {{workshop.duration}}</p> 
+      <p>Duration: {{workshop.duration}}</p>
+      
     </ion-item>
   </ion-list>
 </ion-content>
