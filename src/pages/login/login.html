@@ -15,7 +15,7 @@
 </ion-header>
 
 
-<ion-content padding class="bg-style">
+<ion-content padding>
   <form [formGroup]="loginForm" (submit)="loginUser()" novalidate>
     <ion-item class="item-md">
       <ion-label stacked>Email</ion-label>
@@ -37,13 +37,13 @@
     <button ion-button block type="submit" [disabled]="!loginForm.valid">
       Log In
     </button>
-  </form>
+ 
 
   <button ion-button block clear (click)="goToSignup()">Sign up</button>
   <button ion-button block clear (click)="goToResetPassword()">
     Forgot password
   </button>
-  <form>
-  <img src="assets/imgs/pletra.jpeg" height=180>
-  </form>
+
+  <img src="assets/imgs/pletra1.png" height=200>
+</form>
 </ion-content>
