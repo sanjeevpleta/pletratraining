@@ -19,6 +19,7 @@ import { WorkshopProvider } from '../../providers/workshop/workshop';
 export class ProfilePage {
     public userProfile: any;
     public birthDate: string;
+    public mobileNumber: number;
     public registeredEvents: Array<any> = null;
     constructor(public navCtrl: NavController,
         public alertCtrl: AlertController,
@@ -32,6 +33,7 @@ export class ProfilePage {
       this.profileProvider.getUserProfile().on('value', userProfileSnapshot => {
           this.userProfile = userProfileSnapshot.val();
           this.birthDate = userProfileSnapshot.val().birthDate;
+          this.mobileNumber = userProfileSnapshot.val().mobileNumber;
           //userProfileSnapshot.val().registeredEvents.forEach(snap => {
           //    this.registeredEvents.push({
           //        status: snap.val().status
