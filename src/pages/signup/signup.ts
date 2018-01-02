@@ -7,12 +7,12 @@ import {
     LoadingController,
     NavController
 } from 'ionic-angular';
-
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
-import { HomePage } from '../home/home';
-import { ProfilePage } from '../profile/profile';
+//import { HomePage } from '../home/home';
+//import { ProfilePage } from '../profile/profile';
+
 @IonicPage()
 @Component({
   selector: 'page-signup',
@@ -21,7 +21,7 @@ import { ProfilePage } from '../profile/profile';
 export class SignupPage {
     public signupForm: FormGroup;
     public loading: Loading;
-           
+
     constructor(public navCtrl: NavController,
         public authProvider: AuthProvider,
         public loadingCtrl: LoadingController,
@@ -50,6 +50,7 @@ export class SignupPage {
 
             this.authProvider.signupUser(email, password).then(
                 user => {
+                    this.authProvider.sendEmailVerification();
                     this.loading.dismiss().then(() => {
                         this.navCtrl.setRoot('ProfilePage');
                     });
@@ -64,6 +65,7 @@ export class SignupPage {
                     });
                 }
             );
+            
             this.loading = this.loadingCtrl.create();
             this.loading.present();
         }
@@ -72,4 +74,5 @@ export class SignupPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad SignupPage');
   }
+
 }
