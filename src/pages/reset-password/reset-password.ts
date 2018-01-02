@@ -26,7 +26,29 @@ export class ResetPasswordPage {
                 Validators.compose([Validators.required, EmailValidator.isValid])
             ]
         });
-  }
+    }
+
+    resetPassword(): void {
+        if (!this.resetPasswordForm.valid) {
+            console.log(
+                `Need to complete the form, current value: ${this.resetPasswordForm.value}`
+            );
+        } else {
+            const email: string = this.resetPasswordForm.value.email;
+            this.authProvider.resetPassword(email).then(function () {
+                this.sendAlert("An email has been sent.");
+            }).catch(function (error) {
+                this.sendAlert(error.message);
+            });
+        }
+    }
+    sendAlert(message: string): void {
+        const alert: Alert = this.alertCtrl.create({
+            message: message,
+            buttons: [{ text: 'Ok', role: 'cancel' }]
+        });
+        alert.present();
+    }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ResetPasswordPage');
