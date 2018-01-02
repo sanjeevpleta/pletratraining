@@ -17,6 +17,10 @@ export class ProfileProvider {
       });
   }
 
+  isUserVerified(): boolean {
+      return this.currentUser.emailVerified;
+  }
+
   getUserProfile(): firebase.database.Reference {
       return this.userProfile;
   }

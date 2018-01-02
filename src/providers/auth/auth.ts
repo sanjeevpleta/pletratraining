@@ -2,12 +2,6 @@ import { Injectable } from '@angular/core';
 
 import firebase from 'firebase';
 
-/*
-  Generated class for the AuthProvider provider.
-
-  See https://angular.io/guide/dependency-injection for more info on providers
-  and Angular DI.
-*/
 @Injectable()
 export class AuthProvider {
 
@@ -17,6 +11,16 @@ export class AuthProvider {
 
   loginUser(email: string, password: string): Promise<any> {
       return firebase.auth().signInWithEmailAndPassword(email, password);
+  }
+
+  sendEmailVerification(): void {
+      var user = firebase.auth().currentUser;
+
+      user.sendEmailVerification().then(function () {
+          // Email sent.
+      }).catch(function (error) {
+          // An error happened.
+      });
   }
 
   signupUser(email: string, password: string): Promise<any> {
@@ -39,7 +43,13 @@ export class AuthProvider {
   }
 
   resetPassword(email: string): Promise<any> {
-      return firebase.auth().sendPasswordResetEmail(email);
+      return firebase.auth().sendPasswordResetEmail(email).then(function () {
+          // Email sent.
+          return true;
+      }).catch(function (error) {
+          // An error happened.
+          throw new Error(error);
+      });
   }
 
   logoutUser(): Promise<void> {
