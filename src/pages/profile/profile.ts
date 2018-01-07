@@ -38,7 +38,6 @@ export class ProfilePage {
         //    alert.present();
         //    this.navCtrl.setRoot('LoginPage');
         //}
-
         this.profileProvider.getUserProfile().on('value', userProfileSnapshot => {
             this.userProfile = userProfileSnapshot.val();
             this.birthDate = userProfileSnapshot.val().birthDate;

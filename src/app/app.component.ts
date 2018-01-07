@@ -37,7 +37,7 @@ export class MyApp {
           { title: 'Salesforce Admin', component: HomePage, param: 'SA' },
           { title: 'Salesforce Developer', component: HomePage, param: 'SD' },
           { title: 'Profile', component: 'ProfilePage', param: '' },
-          { title: 'Settings', component: 'SettingsPage', param: '' }
+         // { title: 'Settings', component: 'SettingsPage', param: '' }
       ];
 
       platform.ready().then(() => {

@@ -62,7 +62,7 @@ export class ProfileProvider {
               console.error(error);
           });
   }
-
+  
   updatePassword(newPassword: string, oldPassword: string): Promise<any> {
       const credential: firebase.auth.AuthCredential = firebase.auth.EmailAuthProvider.credential(
           this.currentUser.email,

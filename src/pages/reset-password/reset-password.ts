@@ -40,12 +40,15 @@ export class ResetPasswordPage {
             }).catch(function (error) {
                 this.sendAlert(error.message);
             });
+    
         }
+
     }
     sendAlert(message: string): void {
         const alert: Alert = this.alertCtrl.create({
             message: message,
             buttons: [{ text: 'Ok', role: 'cancel' }]
+        
         });
         alert.present();
     }

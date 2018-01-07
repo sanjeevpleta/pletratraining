@@ -21,3 +21,11 @@ background {
     //background-size:  
     background-position:bottom;
 }
+.toolbar-background {
+    background-color:white;
+  }
+$toolbar-md-button-border-radius: 2px;
+.item.active, .item.activated{
+    border-color: #ccc;
+    background-color: rgb(211, 42, 42);
+}
