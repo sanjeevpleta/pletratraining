@@ -12,7 +12,6 @@ import { AuthProvider } from '../../providers/auth/auth';
 import { EmailValidator } from '../../validators/email';
 //import { HomePage } from '../home/home';
 //import { ProfilePage } from '../profile/profile';
-
 @IonicPage()
 @Component({
   selector: 'page-signup',

@@ -6,7 +6,7 @@
 -->
 <ion-header>
 
-  <ion-navbar>
+  <ion-navbar class="bg-nav">
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
@@ -48,8 +48,8 @@
     </ion-item>
     
     <ion-item class="item-md">
-          <ion-label class="dob-label"> Mobile# </ion-label>
-            <ion-input [(ngModel)]="mobileNumber" type="tel" (ionChange)="updateMobile(mobileNumber)"></ion-input>   
+          <ion-label class="dob-label">Mobile#</ion-label>
+          <ion-input [(ngModel)]="mobileNumber" type="tel" (ionChange)="updateMobile(mobileNumber)"></ion-input>   
     </ion-item>
     <ion-item (click)="updateEmail()" class="item-md">
       <ion-grid>
@@ -95,7 +95,7 @@
         </ion-grid>
     </ion-item>
   </ion-list>
-  <button ion-button block
+  <button ion-button clear block 
           (click)="goToHome()">
     Home
   </button>
