@@ -11,7 +11,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { EmailValidator } from '../../validators/email';
 import { AuthProvider } from '../../providers/auth/auth';
 import { HomePage } from '../home/home';
-
+import { EmailProvider } from '../../providers/email/email';
 @IonicPage()
 @Component({
   selector: 'page-login',
@@ -24,7 +24,8 @@ export class LoginPage {
         public loadingCtrl: LoadingController,
         public alertCtrl: AlertController,
         public authProvider: AuthProvider,
-        formBuilder: FormBuilder
+        formBuilder: FormBuilder,
+        private emailProvider: EmailProvider
     ) {
         this.loginForm = formBuilder.group({
             email: [
@@ -57,6 +58,7 @@ export class LoginPage {
             this.authProvider.loginUser(email, password).then(
                 authData => {
                     this.loading.dismiss().then(() => {
+                        this.emailProvider.addEmailMessage();
                         this.navCtrl.setRoot(HomePage);
                     });
                 },
@@ -73,5 +75,9 @@ export class LoginPage {
             this.loading = this.loadingCtrl.create();
             this.loading.present();
         }
+    }
+
+    ionViewDidLoad() {
+
     }
 }
