@@ -28,6 +28,6 @@ export class RegisterPage {
 
   Confirm(): void {
       this.provider.register(this.currentEvent.id);
-      this.navCtrl.push('ConfirmPage');
+      this.navCtrl.push('ConfirmPage', { profile: this.userProfile, eventData: this.currentEvent });
   }
 }
