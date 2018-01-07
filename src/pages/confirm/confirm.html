@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Confirm</ion-title>
+    <ion-title>confirm</ion-title>
     <ion-buttons end>
       <img src="assets/imgs/ptLogo.jpg" width=100>
     </ion-buttons>
@@ -18,7 +18,9 @@
 
 <ion-content padding class="bg-style">
   <h3>Thanks for registering. </h3>
-  <p>Please check your email for payment details.</p>
+  <p>Here are bank details:</p>
+  <p>{{message}}</p>
+  <p>Payment details also has been sent to your email.</p>
 
   <button ion-button clear
           (click)="goBackHome()">
