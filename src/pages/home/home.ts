@@ -95,7 +95,6 @@ export class HomePage {
         var retVal: boolean = false;
 
         //this.registeredEvents.
-
         return retVal;
     }
 
