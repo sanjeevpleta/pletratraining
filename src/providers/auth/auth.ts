@@ -23,7 +23,11 @@ export class AuthProvider {
       });
   }
 
-  signupUser(email: string, password: string): Promise<any> {
+  signupUser(email: string,
+            password: string,
+            firstname: string,
+            lastname: string,
+            pmobile: string): Promise<any> {
       return firebase
           .auth()
           .createUserWithEmailAndPassword(email, password)
@@ -31,9 +35,10 @@ export class AuthProvider {
               firebase.database().ref(`/userProfile/${newUser.uid}`)
                   //.set(email);
                   .set({
-                      firstName: '',
-                      lastName: '',
-                      email: email
+                      firstName: firstname,
+                      lastName: lastname,
+                      email: email,
+                      mobileNumber: pmobile
                   });
           })
           .catch(error => {
