@@ -1,5 +1,9 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import {
+    Alert,
+    AlertController,
+    NavController, NavParams
+} from 'ionic-angular';
 
 import { AddTrainingPage } from '../add-training/add-training';
 
@@ -25,6 +29,7 @@ export class HomePage {
     constructor(public navCtrl: NavController,
         public navParam: NavParams,
         public provider: WorkshopProvider,
+        public alertCtrl: AlertController,
         public publicProvider: ProfileProvider) {
         var p: string = this.navParam.get('param');
         switch (p) {
@@ -49,8 +54,16 @@ export class HomePage {
     }
 
     ionViewDidLoad() {
+        /*if (this.publicProvider.isUserVerified() == false) {
+            const alert: Alert = this.alertCtrl.create({
+                message: "Email address is not verified.",
+                buttons: [{ text: 'Ok', role: 'cancel' }]
+            });
+            alert.present();
+            this.navCtrl.setRoot('LoginPage');
+        }*/
         this.getRegisteredEvents();
-        console.log("id : " + this.navParam.get('id'));
+        //console.log("id : " + this.navParam.get('id'));
         this.provider.get().on('value', workshopListSnapshot => {
             this.workshopData = this.Getdata(workshopListSnapshot, 'Salesforce Workshop');
             this.SalesforceAdmin = this.Getdata(workshopListSnapshot, 'Salesforce Admin');
@@ -59,7 +72,7 @@ export class HomePage {
 
         this.isAdmin = this.getAdmin();
     }
-    
+
     Getdata(data: any, filter: string): Array<any> {
         var array: Array<any> = [];
         data.forEach(snap => {
@@ -69,12 +82,21 @@ export class HomePage {
                     startDate: snap.val().startDate,
                     cost: snap.val().cost,
                     location: snap.val().location,
-                    duration:snap.val().duration
+                    duration: snap.val().duration,
+                    isRegistered: this.checkIsRegistered(snap.key)
                 });
             }
             return false;
         });
         return array;
+    }
+
+    checkIsRegistered(eventId: string): boolean {
+        var retVal: boolean = false;
+
+        //this.registeredEvents.
+
+        return retVal;
     }
 
     getAdmin(): boolean {

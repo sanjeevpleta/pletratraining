@@ -1,6 +1,5 @@
 <!--
   Generated template for the SignupPage page.
-
   See http://ionicframework.com/docs/components/#navigation for more info on
   Ionic pages and navigation.
 -->
@@ -8,19 +7,19 @@
 
   <ion-navbar>
     <ion-title>Sign up</ion-title>
-	<ion-buttons end>
-        <img src="assets/imgs/ptLogo.jpg" width=100>
+    <ion-buttons end>
+      <img src="assets/imgs/ptLogo.jpg" width=100>
     </ion-buttons>
   </ion-navbar>
-	
+
 
 </ion-header>
 
 
 <ion-content padding>
-  <form [formGroup]="signupForm" (submit)="signupUser()" novalidate >
-    
-	  <ion-item>
+  <form [formGroup]="signupForm" (submit)="signupUser()" novalidate>
+
+    <ion-item>
       <ion-label stacked>Email</ion-label>
       <ion-input formControlName="email" type="email" placeholder="Your email address"
                  [class.invalid]="!signupForm.controls.email.valid && blur">
@@ -40,12 +39,39 @@
     signupForm.controls.password.touched">
       <p>Your password needs more than 6 characters.</p>
     </ion-item>
-    <button ion-button block type="submit" color="primary"[disabled]="!signupForm.valid">
-        Next
+    <ion-item>
+      <ion-label stacked>First name</ion-label>
+      <ion-input formControlName="firstName" placeholder="First name"
+                 [class.invalid]="!signupForm.controls.firstName.valid && blur"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!signupForm.controls.firstName.valid  &&
+    signupForm.controls.firstName.touched">
+      <p>Required</p>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Last name</ion-label>
+      <ion-input formControlName="lastName" placeholder="Last name"
+                 [class.invalid]="!signupForm.controls.lastName.valid && blur"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!signupForm.controls.lastName.valid  &&
+    signupForm.controls.lastName.touched">
+      <p>Required</p>
+    </ion-item>
+    <ion-item>
+      <ion-label stacked>Mobile</ion-label>
+      <ion-input formControlName="mobileNumber" placeholder="Mobile number"
+                 [class.invalid]="!signupForm.controls.mobileNumber.valid && blur"></ion-input>
+    </ion-item>
+    <ion-item class="error-message" *ngIf="!signupForm.controls.mobileNumber.valid  &&
+    signupForm.controls.mobileNumber.touched">
+      <p>Your mobile number needs more than 10 digits.</p>
+    </ion-item>                         
+    <button ion-button block type="submit" color="primary" [disabled]="!signupForm.valid">
+      Submit
     </button>
-	<img src="assets/imgs/pletra1.png" height=250>
-    
-	</form>
-		
-  
+    <img src="assets/imgs/pletra1.png" height=250>
+
+  </form>
+
+
 </ion-content>
