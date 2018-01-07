@@ -30,14 +30,14 @@ export class ProfilePage {
     }
 
     ionViewDidLoad() {
-        if (this.profileProvider.isUserVerified() == false) {
-            const alert: Alert = this.alertCtrl.create({
-                message: "Email address is not verified.",
-                buttons: [{ text: 'Ok', role: 'cancel' }]
-            });
-            alert.present();
-            this.navCtrl.setRoot('LoginPage');
-        }
+        //if (this.profileProvider.isUserVerified() == false) {
+        //    const alert: Alert = this.alertCtrl.create({
+        //        message: "Email address is not verified.",
+        //        buttons: [{ text: 'Ok', role: 'cancel' }]
+        //    });
+        //    alert.present();
+        //    this.navCtrl.setRoot('LoginPage');
+        //}
 
         this.profileProvider.getUserProfile().on('value', userProfileSnapshot => {
             this.userProfile = userProfileSnapshot.val();
