@@ -35,6 +35,18 @@ export class SignupPage {
             password: [
                 '',
                 Validators.compose([Validators.minLength(6), Validators.required])
+            ],
+            firstName: [
+                '',
+                Validators.compose([Validators.required])
+            ],
+            lastName: [
+                '',
+                Validators.compose([Validators.required])
+            ],
+            mobileNumber: [
+                '',
+                Validators.compose([Validators.minLength(10), Validators.maxLength(10), Validators.required])
             ]
         });
     }
@@ -47,12 +59,20 @@ export class SignupPage {
         } else {
             const email: string = this.signupForm.value.email;
             const password: string = this.signupForm.value.password;
+            const firstname: string = this.signupForm.value.firstName;
+            const lastname: string = this.signupForm.value.lastName;
+            const mobilenumber: string = this.signupForm.value.mobileNumber;
 
-            this.authProvider.signupUser(email, password).then(
+            this.authProvider.signupUser(email, password, firstname, lastname, mobilenumber).then(
                 user => {
                     this.authProvider.sendEmailVerification();
                     this.loading.dismiss().then(() => {
-                        this.navCtrl.setRoot('ProfilePage');
+                        const alert: Alert = this.alertCtrl.create({
+                            message: 'Please check your email to verify',
+                            buttons: [{ text: 'Ok', role: 'cancel' }]
+                        });
+                        alert.present();
+                        this.navCtrl.setRoot('LoginPage');
                     });
                 },
                 error => {
