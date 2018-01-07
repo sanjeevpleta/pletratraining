@@ -54,16 +54,16 @@ export class HomePage {
     }
 
     ionViewDidLoad() {
-        if (this.publicProvider.isUserVerified() == false) {
+        /*if (this.publicProvider.isUserVerified() == false) {
             const alert: Alert = this.alertCtrl.create({
                 message: "Email address is not verified.",
                 buttons: [{ text: 'Ok', role: 'cancel' }]
             });
             alert.present();
             this.navCtrl.setRoot('LoginPage');
-        }
+        }*/
         this.getRegisteredEvents();
-        console.log("id : " + this.navParam.get('id'));
+        //console.log("id : " + this.navParam.get('id'));
         this.provider.get().on('value', workshopListSnapshot => {
             this.workshopData = this.Getdata(workshopListSnapshot, 'Salesforce Workshop');
             this.SalesforceAdmin = this.Getdata(workshopListSnapshot, 'Salesforce Admin');
