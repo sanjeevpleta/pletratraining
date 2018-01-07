@@ -24,7 +24,8 @@ export class LoginPage {
         public loadingCtrl: LoadingController,
         public alertCtrl: AlertController,
         public authProvider: AuthProvider,
-        formBuilder: FormBuilder    ) {
+        formBuilder: FormBuilder
+    ) {
         this.loginForm = formBuilder.group({
             email: [
                 '',
