@@ -54,14 +54,14 @@ export class HomePage {
     }
 
     ionViewDidLoad() {
-        /*if (this.publicProvider.isUserVerified() == false) {
+        if (this.publicProvider.isUserVerified() == false) {
             const alert: Alert = this.alertCtrl.create({
-                message: "Email address is not verified.",
+                message: "Email address is not verified. \n Please check your email and verify!!",
                 buttons: [{ text: 'Ok', role: 'cancel' }]
             });
             alert.present();
             this.navCtrl.setRoot('LoginPage');
-        }*/
+        }
         this.getRegisteredEvents();
         //console.log("id : " + this.navParam.get('id'));
         this.provider.get().on('value', workshopListSnapshot => {
@@ -95,6 +95,7 @@ export class HomePage {
         var retVal: boolean = false;
 
         //this.registeredEvents.
+
         return retVal;
     }
 
