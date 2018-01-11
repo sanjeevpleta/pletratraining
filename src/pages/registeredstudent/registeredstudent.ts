@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WorkshopProvider } from '../../providers/workshop/workshop';
+import { ProfileProvider } from '../../providers/profile/profile';
 import firebase from 'firebase';
 /**
  * Generated class for the RegisteredstudentPage page.
@@ -16,10 +17,12 @@ import firebase from 'firebase';
 })
 export class RegisteredstudentPage {
    public registeredEvent:any;
-   //public registeredEvents: Array<any> = null;
+   public registeredEvents: Array<any> = null;
+   public userProfile: any;
    public WorkshopList: firebase.database.Reference
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+  constructor(public navCtrl: NavController, public navParams: NavParams,public profileProvider: ProfileProvider,
+        public eventProvider: WorkshopProvider){
+         } 
   
   
   
@@ -34,15 +37,36 @@ export class RegisteredstudentPage {
   //      });
  // }
   
-  
-  
-  
-  ionViewDidLoad() {
-                const workshopRef: firebase.database.Reference = firebase.database().ref('workshop');
-             // console.log('workshop list : ' + this.WorkshopList);
-				workshopRef.on('value',workSnapshot=>{
-				this.registeredEvent=workSnapshot.val().eventType;
-	       
-        });
+   ionViewDidLoad() {
+     this.profileProvider.getRegisteredEvents().on('value',snap => {
+      this.registeredEvents=[];
+	  snap.forEach(data => {
+	    let value :any =this.getEvent(data.val().EventId);
+	      this.registeredEvents.push({
+	      eventType:value.eventType,
+		  userprofile:value.userProfile,
+	      status:data.val().status,
+	      eventId:data.key
+	  });
+	  return false;
+	  });
+   });
+ }   
+   getEvent(eventId:string):any{
+     let value:any = '';
+     this.eventProvider.getById(eventId).on('value',eventData =>{
+	 value = eventData.val();
+	 })	 
+    return value;
    }
-}
+  
+  
+  
+         //       const workshopRef: firebase.database.Reference = firebase.database().ref('workshop');
+             // console.log('workshop list : ' + this.WorkshopList);
+		//		workshopRef.on('value',workSnapshot=>{
+		//		this.registeredEvent=workSnapshot.val().eventType;
+	       
+        //});
+   }
+
