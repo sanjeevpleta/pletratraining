@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { AddTrainingPage } from '../add-training/add-training';
-
-/**
+import {RegisteredstudentPage} from '../registeredstudent/registeredstudent';
+/*
  * Generated class for the AdminPage page.
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
@@ -25,5 +25,7 @@ export class AdminPage {
   addTraining(): void {
         this.navCtrl.push(AddTrainingPage);
     }
-
+  registeredstudent():void{
+     this.navCtrl.push(RegisteredstudentPage);
+  }
 }
