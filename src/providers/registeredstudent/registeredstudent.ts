@@ -1,7 +1,7 @@
 import firebase from 'firebase';
 
 @Injectable()
-export class ProfileProvider {
+export class RegisterStudentProvider {
 
     public userProfile: firebase.database.Reference;
 	public user_id= Array<any> = null;
