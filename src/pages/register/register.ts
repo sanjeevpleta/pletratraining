@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 //import { WorkshopProvider } from '../../providers/workshop/workshop';
 import { ProfileProvider } from '../../providers/profile/profile';
 import { PaymentProvider } from '../../providers/payment/payment';
+import {RegisterStudentProvider} from '../../providers/registeredstudent/registeredstudent';
 
 @IonicPage()
 @Component({
@@ -14,7 +15,8 @@ export class RegisterPage {
     public userProfile: any = {};
     constructor(public navCtrl: NavController, public navParams: NavParams,
         public provider: PaymentProvider,
-        public profileProvider: ProfileProvider) {
+        public profileProvider: ProfileProvider,
+		public registerProvider:RegisterStudentProvider) {
   }
 
   ionViewDidLoad() {
@@ -28,6 +30,7 @@ export class RegisterPage {
 
   Confirm(): void {
       this.provider.register(this.currentEvent.id);
+	  this.registerProvider.createRegisterStudent('awaiting',this.userProfile.uid,this.currentEvent.id);
       this.navCtrl.push('ConfirmPage', { profile: this.userProfile, eventData: this.currentEvent });
   }
 }
