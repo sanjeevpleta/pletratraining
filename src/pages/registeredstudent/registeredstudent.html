@@ -14,24 +14,20 @@
 
 
 <ion-content padding>
- <ion-item>
-    <ion-label stacked>Course Type :</ion-label>
-    <ion-select>
-	<ion-option>Salesforce Workshop</ion-option>
-        <ion-option>Salesforce Admin</ion-option>
-       <ion-option>Salesforce Developer</ion-option>
-    </ion-select> 
- </ion-item>
- <ion-list  *ngIf="registeredEvents?.length > 0">
- <ion-item *ngFor="let event of registeredEvents">
-   <ion-grid>
-         <ion-row>
-          <ion-col>{{event.eventType}}</ion-col>
-         </ion-row>
-		 <ion-row>
-          <ion-col>{{event.status}}</ion-col>
-         </ion-row>
-   </ion-grid>
- </ion-item>
- <ion-list>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+	     User name
+	  </ion-col>
+      <ion-col>
+	     
+	  </ion-col>     	  
+	  <ion-col>	   
+	    Status
+	  </ion-col>
+      <ion-col>
+        {{student.status}}
+      </ion-col>
+	  </ion-row>	  
+    </ion-grid>
 </ion-content>

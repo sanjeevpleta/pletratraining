@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WorkshopProvider } from '../../providers/workshop/workshop';
 import { ProfileProvider } from '../../providers/profile/profile';
+import {RegisterStudentProvider} from '../../providers/registeredstudent/registeredstudent';
 import firebase from 'firebase';
 /**
  * Generated class for the RegisteredstudentPage page.
@@ -16,57 +17,38 @@ import firebase from 'firebase';
   templateUrl: 'registeredstudent.html',
 })
 export class RegisteredstudentPage {
-   public registeredEvent:any;
-   public registeredEvents: Array<any> = null;
-   public userProfile: any;
-   public WorkshopList: firebase.database.Reference
+  public registeredStudent: Array<any> = null;
+  public student:any = {};
   constructor(public navCtrl: NavController, public navParams: NavParams,public profileProvider: ProfileProvider,
-        public eventProvider: WorkshopProvider){
-         } 
-  
-  
-  
- // getData()
-   //         { 
-   //           const workshopRef: firebase.database.Reference = firebase.database().ref('workshop');
-   //           console.log('workshop list : ' + this.WorkshopList);
-	//			this.workshopRef.on('value',workSnapshot=>{
-	//			this.registeredEvent=workSnapshot.val().eventType;
-//			
-  //          
-  //      });
- // }
-  
-   ionViewDidLoad() {
-     this.profileProvider.getRegisteredEvents().on('value',snap => {
-      this.registeredEvents=[];
-	  snap.forEach(data => {
-	    let value :any =this.getEvent(data.val().EventId);
-	      this.registeredEvents.push({
-	      eventType:value.eventType,
-		  userprofile:value.userProfile,
-	      status:data.val().status,
-	      eventId:data.key
-	  });
-	  return false;
-	  });
-   });
- }   
-   getEvent(eventId:string):any{
-     let value:any = '';
-     this.eventProvider.getById(eventId).on('value',eventData =>{
-	 value = eventData.val();
-	 })	 
-    return value;
-   }
-  
-  
-  
-         //       const workshopRef: firebase.database.Reference = firebase.database().ref('workshop');
-             // console.log('workshop list : ' + this.WorkshopList);
-		//		workshopRef.on('value',workSnapshot=>{
-		//		this.registeredEvent=workSnapshot.val().eventType;
-	       
-        //});
-   }
+        public eventProvider: WorkshopProvider, public registerStudentProvider:RegisterStudentProvider){
+        }
 
+  ionViewDidload()
+  
+  { 
+    
+	this.registerStudentProvider.getRegisteredStudent().on('value', studentSnapshot => {
+    this.student = studentSnapshot.val();
+	console.log('in student');
+	//console.log('status' + this.student.status);
+       })
+     	   
+	
+	/*
+	this.registerStudentProvider.getRegisteredStudent().on('value', snap => {
+            this.registeredStudent = [];
+            snap.forEach(data => {
+                    this.registeredStudent.push({
+                    status: data.val().status,
+                    userID: data.val().UserID,
+                    eventID:data.val().EventId,
+                                    
+			});
+                return false;
+           });
+        });		
+    */
+ }
+ }   
+ 
+ 
