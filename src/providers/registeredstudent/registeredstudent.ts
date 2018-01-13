@@ -1,35 +1,32 @@
 import firebase from 'firebase';
 
+import { Injectable } from '@angular/core';
 @Injectable()
-export class RegisterStudentProvider {
 
-    public userProfile: firebase.database.Reference;
-	public user_id= Array<any> = null;
-	public user_ref:any;
-	public eventId:string;
-	public usid:string;
-    public currentUser: firebase.User;
-	
-  constructor() {
+
+export class RegisterStudentProvider {
+	public registeredEvent: firebase.database.Reference;
+    
+	constructor() {
+	       // firebase.auth().onAuthStateChanged(user => {
+           //  if (user) {
+                this.registeredEvent = firebase.database().ref('registerEvent');
+                console.log('Registered Student list : ' + this.registeredEvent);
+           //  }
+        //});
         }
 
-
-  getID(){
-   //  this.user_ref= firebase.database().ref(`/uid`);
-     this.user_ref= firebase.database().ref();
-	 user_ref.on('value', snap => {
-	 this.user_id = [];
-	 snap.forEach(data=>{
-	  this.user_id.push({
-	  //  eventId: data.key;
-		usid:data.uid;
-        		
-	 });
-	}); 
-   });
-}
-}   
- 
+    createRegisterStudent(eventStatus:string,userId:string,eventId:string):firebase.database.ThenableReference{
+       return this.registeredEvent.push({
+	        status:eventStatus,
+			user:userId,
+			event:eventId,
+	                
+	   });
+	}
+	getRegisteredStudent(): firebase.database.Reference {
+       return this.registeredEvent;
+     }
   
-  
+ } 
   
