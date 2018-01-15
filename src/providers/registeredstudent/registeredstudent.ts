@@ -16,7 +16,7 @@ export class RegisterStudentProvider {
           });
     }
 
-  createRegisterStudent(eventStatus: string, userId: string, eventId: string): firebase.database.ThenableReference {
+   createRegisterStudent(eventStatus: string, userId: string, eventId: string): firebase.database.ThenableReference {
       console.log('Registered Student lit : ' + this.registeredEvent);
 	  console.log('Registered status : ' + eventStatus);
 	  console.log('user:'+this.currentUser.uid);
@@ -27,9 +27,14 @@ export class RegisterStudentProvider {
       });
 	  
    } 
-   getRegisteredStudent(): firebase.database.Reference {
+   
+   getRegisteredStudent(): firebase.database.Reference 
+    {
       return this.registeredEvent;
-	  
-  }
-    
+	}   
+   
+   getById(key: string): firebase.database.Reference 
+    {
+      return this.registeredEvent.child(key);
+    } 	
 }
