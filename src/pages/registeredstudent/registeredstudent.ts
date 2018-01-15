@@ -19,35 +19,36 @@ import firebase from 'firebase';
 export class RegisteredstudentPage {
   public registeredStudent: Array<any> = null;
   public student:any = {};
+  public status:any={};
+  public sta:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public profileProvider: ProfileProvider,
-        public eventProvider: WorkshopProvider, public registerStudentProvider:RegisterStudentProvider){
+        public eventProvider: WorkshopProvider, public registerProvider:RegisterStudentProvider){
         }
 
   ionViewDidload()
-  
   { 
-    
-	this.registerStudentProvider.getRegisteredStudent().on('value', studentSnapshot => {
-    this.student = studentSnapshot.val();
-	console.log('in student');
-	//console.log('status' + this.student.status);
-       })
-     	   
-	
-	/*
-	this.registerStudentProvider.getRegisteredStudent().on('value', snap => {
+    /*
+      console.log('in register stiudent page');
+	  this.registerProvider.getRegisteredStudent().on('value', studentSnapshot => {
+      this.student= studentSnapshot.val();
+	 
+	  //this.sta = studentSnapshot.val();
+      //console.log('in student'+this.student);
+	  //console.log('in student'+studentSnapshot.val());
+	 
+	  });	   
+	 
+	*/
+
+	 this.registerProvider.getRegisteredStudent().on('value', snap => {
             this.registeredStudent = [];
             snap.forEach(data => {
                     this.registeredStudent.push({
-                    status: data.val().status,
-                    userID: data.val().UserID,
-                    eventID:data.val().EventId,
-                                    
-			});
+                    eventStatus: data.value.status,
+                   });
                 return false;
-           });
-        });		
-    */
+            });
+        });    
  }
  }   
  

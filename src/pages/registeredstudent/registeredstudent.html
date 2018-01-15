@@ -14,20 +14,17 @@
 
 
 <ion-content padding>
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-	     User name
-	  </ion-col>
-      <ion-col>
-	     
-	  </ion-col>     	  
-	  <ion-col>	   
-	    Status
-	  </ion-col>
-      <ion-col>
-        {{student.status}}
-      </ion-col>
+  
+<h2>Student</h2>
+
+
+ <ion-item *ngFor="let event of registeredStudent">
+	 <ion-grid>
+	   <ion-row>
+	    <ion-col>
+	     {{event.eventStatus}}
+	    </ion-col>
 	  </ion-row>	  
-    </ion-grid>
+     </ion-grid> 
+	</ion-item>
 </ion-content>
