@@ -7,12 +7,14 @@ import firebase from 'firebase';
 export class ProfileProvider {
 
     public userProfile: firebase.database.Reference;
+	public userProfileList: firebase.database.Reference;
     public currentUser: firebase.User;
-  constructor() {
+    constructor() {
       firebase.auth().onAuthStateChanged(user => {
           if (user) {
               this.currentUser = user;
               this.userProfile = firebase.database().ref(`/userProfile/${user.uid}`);
+			  this.userProfileList = firebase.database().ref('userProfile');
           }
       });
   }
@@ -80,4 +82,14 @@ export class ProfileProvider {
               console.error(error);
           });
   }
+  
+  getUserProfileList(): firebase.database.Reference 
+  {
+      return this.userProfileList;
+  }
+  getUserById(key: string): firebase.database.Reference 
+    {
+      return this.userProfileList.child(key);
+    } 
+  
 }
