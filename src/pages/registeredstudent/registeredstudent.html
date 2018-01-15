@@ -19,12 +19,23 @@
 
 
  <ion-item *ngFor="let event of registeredStudent">
-	 <ion-grid>
-	   <ion-row>
-	    <ion-col>
-	     {{event.eventStatus}}
-	    </ion-col>
-	  </ion-row>	  
+   <ion-grid>
+	  <ion-row>
+	     <ion-col>
+	     {{event.userName}}
+	     </ion-col>
+	  </ion-row>
+	  <ion-row>
+        <ion-col>
+          {{event.eventType}}
+        </ion-col>
+      </ion-row> 
+      <ion-row>
+        <ion-col>
+          {{event.eventStatus}}
+        </ion-col>
+       </ion-row>		
      </ion-grid> 
-	</ion-item>
+	 
+</ion-item>	 
 </ion-content>

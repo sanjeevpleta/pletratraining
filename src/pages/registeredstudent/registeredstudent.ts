@@ -25,7 +25,7 @@ export class RegisteredstudentPage {
         public eventProvider: WorkshopProvider, public registerProvider:RegisterStudentProvider){
         }
 
-  ionViewDidload()
+  ionViewDidLoad()
   { 
     /*
       console.log('in register stiudent page');
@@ -41,15 +41,49 @@ export class RegisteredstudentPage {
 	*/
 
 	 this.registerProvider.getRegisteredStudent().on('value', snap => {
+	        
+			console.log('snap '+snap); 
             this.registeredStudent = [];
             snap.forEach(data => {
+			 let value:any= this.getEvent(data.val().eventdata);
+			 let value1:any=this.getUser(data.val().userdata);
+			 console.log('value='+value);
+			   console.log('data'+data); 
                     this.registeredStudent.push({
-                    eventStatus: data.value.status,
+                    eventStatus: data.val().status,
+					eventType: value.eventType,
+					userName:value1.firstName + ' ' + value1.lastName,
+					eventData: data.key,
                    });
                 return false;
+            });console.log('length'+ this.registeredStudent.length)
+			console.log('status')
+			//console.log('regs'+registeredStudent);
+        });
+
+	}
+	getEvent(eventID: string): any {
+        let value: any = '';
+        //console.log('event id = ' + eventID);
+        this.eventProvider
+            .getById(eventID)
+            .on('value', eventData => {
+                //console.log('eventdata = ' + eventData.val().eventType);
+                value = eventData.val()
             });
-        });    
- }
+        return value;
+    }
+	
+	getUser(userId: string):any{
+	     let value: any = '';
+		 this.profileProvider.getUserById(userId).on('value',userData=>{
+		      console.log('userData='+userData.val().firstName)
+			  value = userData.val()
+		 });
+		 return value; 
+	}
+	
+ 
  }   
  
  
