@@ -19,23 +19,48 @@
 
 
  <ion-item *ngFor="let event of registeredStudent">
-   <ion-grid>
+    <ion-grid>
+	  
 	  <ion-row>
 	     <ion-col>
-	     {{event.userName}}
+	       User Name:
 	     </ion-col>
+		 <ion-col>
+		   {{event.userName}}
+		 </ion-col>
 	  </ion-row>
+	  
+	  <ion-row>
+        <ion-col >
+          Course Name:
+        </ion-col>
+		    <ion-col>
+		      {{event.eventType}}
+		    </ion-col>
+      </ion-row> 
+      
 	  <ion-row>
         <ion-col>
-          {{event.eventType}}
-        </ion-col>
-      </ion-row> 
-      <ion-row>
-        <ion-col>
-          {{event.eventStatus}}
-        </ion-col>
-       </ion-row>		
-     </ion-grid> 
+          Status:
+				</ion-col>
+		    <ion-col>
+				 {{event.eventStatus}}
+				</ion-col>
+			</ion-row>
+			
+			<ion-row>
+				<ion-col>
+				    <button ion-button block clear [disabled]="!event.eventStatus=='awaiting'" (click)="changePaymentStatus(event.eventData)">
+							 Paid
+						</button>
+				</ion-col>
+			</ion-row>
+				
+		<!--<ion-item *ngIf="event.eventStatus=='awaiting'></ion-item>-->
+    <!--		   <button ion-button block [disabled]="event.eventStatus=='awaiting'" (click)="changePaymentStatus(event.id)">-->
+				 
+		 
+	</ion-grid> 	
+	</ion-item>	
 	 
-</ion-item>	 
 </ion-content>

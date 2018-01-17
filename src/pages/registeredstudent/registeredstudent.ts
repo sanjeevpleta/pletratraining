@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { WorkshopProvider } from '../../providers/workshop/workshop';
 import { ProfileProvider } from '../../providers/profile/profile';
 import {RegisterStudentProvider} from '../../providers/registeredstudent/registeredstudent';
+import {Alert, AlertController} from 'ionic-angular';
 import firebase from 'firebase';
 /**
  * Generated class for the RegisteredstudentPage page.
@@ -22,7 +23,7 @@ export class RegisteredstudentPage {
   public status:any={};
   public sta:any;
   constructor(public navCtrl: NavController, public navParams: NavParams,public profileProvider: ProfileProvider,
-        public eventProvider: WorkshopProvider, public registerProvider:RegisterStudentProvider){
+        public eventProvider: WorkshopProvider, public registerProvider:RegisterStudentProvider,public alertCtrl: AlertController){
         }
 
   ionViewDidLoad()
@@ -52,15 +53,15 @@ export class RegisteredstudentPage {
                     this.registeredStudent.push({
                     eventStatus: data.val().status,
 					eventType: value.eventType,
-					userName:value1.firstName + ' ' + value1.lastName,
-					eventData: data.key,
+					userName:value1.firstName,
+                    eventData: data.key,
+                    id:snap.key,
                    });
                 return false;
             });console.log('length'+ this.registeredStudent.length)
 			console.log('status')
 			//console.log('regs'+registeredStudent);
         });
-
 	}
 	getEvent(eventID: string): any {
         let value: any = '';
@@ -80,10 +81,16 @@ export class RegisteredstudentPage {
 		      console.log('userData='+userData.val().firstName)
 			  value = userData.val()
 		 });
-		 return value; 
-	}
-	
- 
- }   
+		 return value;
+    } 
+
+    changePaymentStatus(id:string):any{
+        console.log('In status function');
+        console.log('id'+id);
+        //console.log('status'+eventStatus);
+        this.registerProvider.updateStatus('id','confirm');
+    }
+    
+}   
  
  
