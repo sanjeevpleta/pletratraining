@@ -36,5 +36,11 @@ export class RegisterStudentProvider {
    getById(key: string): firebase.database.Reference 
     {
       return this.registeredEvent.child(key);
-    } 	
+    } 
+    
+    updateStatus(id:string,status:string): Promise<any> {
+        console.log('in provider method');
+        return this.registeredEvent.update({id,status});
+    }
+	
 }
