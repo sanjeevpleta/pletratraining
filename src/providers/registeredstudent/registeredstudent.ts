@@ -28,7 +28,7 @@ export class RegisterStudentProvider {
 	  
    } 
    
-   getRegisteredStudent(): firebase.database.Reference 
+   getRegisteredStudent(): firebase.database.Reference  
     {
       return this.registeredEvent;
 	}   
@@ -38,9 +38,10 @@ export class RegisterStudentProvider {
       return this.registeredEvent.child(key);
     } 
     
-    updateStatus(id:string,status:string): Promise<any> {
+    updateStatus(id: string,status: string): Promise<any> {
         console.log('in provider method');
-        return this.registeredEvent.update({id,status});
+        //return this.registeredEvent.child('registeredEvents').child(id).update({status});
+        return this.registeredEvent.child(id).update({status});
     }
 	
 }
