@@ -1,3 +1,15 @@
 page-admin {
+    .item-md{
+         background: transparent;
+    }
 
+    .bg-style{
+        background-image: url('../assets/imgs/ts.png');
+        background-repeat: no-repeat;
+        background-position: bottom;
+    }
+     .list-md{
+         $list-inset-md-margin-top : 16px;
+     }
+    
 }
