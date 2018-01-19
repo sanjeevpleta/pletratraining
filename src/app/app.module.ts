@@ -14,14 +14,15 @@ import { CourseProvider } from '../providers/course/course';
 import { WorkshopProvider } from '../providers/workshop/workshop';
 import { PaymentProvider } from '../providers/payment/payment';
 import { EmailProvider } from '../providers/email/email';
-
+import { RegisteredstudentPage } from '../pages/registeredstudent/registeredstudent';
+import {RegisterStudentProvider} from  '../providers/registeredstudent/registeredstudent' 
 @NgModule({
   declarations: [
     MyApp,
       HomePage,
       AddTrainingPage,
-	  
-	  
+	  RegisteredstudentPage
+	
   ],
   imports: [
     BrowserModule,
@@ -32,7 +33,7 @@ import { EmailProvider } from '../providers/email/email';
     MyApp,
       HomePage,
       AddTrainingPage,
-
+      RegisteredstudentPage
   ],
   providers: [
     StatusBar,
@@ -44,7 +45,8 @@ import { EmailProvider } from '../providers/email/email';
     CourseProvider,
     WorkshopProvider,
     PaymentProvider,
-	EmailProvider
+	EmailProvider,
+	RegisterStudentProvider
   ]
 })
 export class AppModule {}

@@ -7,7 +7,7 @@ import { EmailComposer } from '@ionic-native/email-composer';
 import firebase, { Unsubscribe } from 'firebase';
 import { firebaseConfig } from './credentials';
 import { HomePage } from '../pages/home/home';
-import { AdminPage } from '../pages/admin/admin';
+
 @Component({
   templateUrl: 'app.html'
 })
@@ -39,7 +39,7 @@ export class MyApp {
           { title: 'Salesforce Admin', component: HomePage, param: 'SA' },
           { title: 'Salesforce Developer', component: HomePage, param: 'SD' },
           { title: 'Profile', component: 'ProfilePage', param: '' },
-		  {title: 'Admin',component:'AdminPage',param:''}
+          {title: 'Admin',component:'AdminPage',param:''}
          // { title: 'Settings', component: 'SettingsPage', param: '' }
       ];
 
