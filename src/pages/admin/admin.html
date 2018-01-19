@@ -11,21 +11,21 @@
       <ion-icon name="menu"></ion-icon>
     </button>
     <ion-title>admin</ion-title>
+    <ion-buttons end>
+       <img src="assets/imgs/ptlogo.jpg" width=100>
+    </ion-buttons>   
   </ion-navbar>
 
 </ion-header>
 
 
-<ion-content padding>
-<ion-list>
- <ion-item (click)="addTraining()">
+<ion-content padding class="bg-style">
+<ion-list class="list-md">
+  <ion-item (click)="addTraining()" class="item-md">
    <p>Add Training<p>
- </ion-item>
- <ion-item (click)="registeredstudent()">
+  </ion-item >
+  <ion-item (click)="registeredstudent()" class="item-md">
    <p>Registered student<p>
- </ion-item>
- <ion-item>
-   <p>Payment Status<p>
- </ion-item>
+  </ion-item>
  </ion-list>
 </ion-content>
