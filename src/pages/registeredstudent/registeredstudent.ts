@@ -22,6 +22,7 @@ export class RegisteredstudentPage {
   public student:any = {};
   public status:any={};
   public sta:any;
+  
   constructor(public navCtrl: NavController, public navParams: NavParams,public profileProvider: ProfileProvider,
         public eventProvider: WorkshopProvider, public registerProvider:RegisterStudentProvider,public alertCtrl: AlertController){
         }
@@ -41,28 +42,29 @@ export class RegisteredstudentPage {
 	 
 	*/
 
-	 this.registerProvider.getRegisteredStudent().on('value', snap => {
+    this.registerProvider.getRegisteredStudent().on('value', snap => {
 	        
 			console.log('snap '+snap); 
             this.registeredStudent = [];
-            snap.forEach(data => {
+             snap.forEach(data => {
 			 let value:any= this.getEvent(data.val().eventdata);
 			 let value1:any=this.getUser(data.val().userdata);
 			 console.log('value='+value);
 			   console.log('data'+data); 
                     this.registeredStudent.push({
                     eventStatus: data.val().status,
-					eventType: value.eventType,
-					userName:value1.firstName,
-                    eventData: data.key,
-                    id:snap.key,
-                   });
+                    eventType: value.eventType,
+                    userName:value1,  
+                    eventData: data.key
+                });
                 return false;
             });console.log('length'+ this.registeredStudent.length)
-			console.log('status')
-			//console.log('regs'+registeredStudent);
+            console.log('status')
+           
         });
-	}
+        
+    }
+
 	getEvent(eventID: string): any {
         let value: any = '';
         //console.log('event id = ' + eventID);
@@ -79,18 +81,20 @@ export class RegisteredstudentPage {
 	     let value: any = '';
 		 this.profileProvider.getUserById(userId).on('value',userData=>{
 		      console.log('userData='+userData.val().firstName)
-			  value = userData.val()
+			  value = userData.val().firstName +' '+ userData.val().lastName
 		 });
 		 return value;
     } 
 
-    changePaymentStatus(id:string):any{
+    changePaymentStatus(id):void{
         console.log('In status function');
         console.log('id'+id);
         //console.log('status'+eventStatus);
-        this.registerProvider.updateStatus('id','confirm');
+        this.registerProvider.updateStatus(id,'Paid');
+        //console.log('provider return value'+this.registerProvider.updateStatus(id ,'paid'));
     }
+}
     
-}   
+   
  
  

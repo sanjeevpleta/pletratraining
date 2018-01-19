@@ -7,26 +7,30 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>registeredstudent</ion-title>
-  </ion-navbar>
+    <ion-title text-wrap>registeredstudent</ion-title>
+	<ion-buttons end>
+		 <img src="assets/imgs/ptLogo.jpg" width=100>
+	</ion-buttons> 
+	</ion-navbar>
+	
 
 </ion-header>
 
 
-<ion-content padding>
+<ion-content padding class="bg-style">
   
 <h2>Student</h2>
 
 
- <ion-item *ngFor="let event of registeredStudent">
+ <ion-item *ngFor="let event of registeredStudent" class="item-md">
     <ion-grid>
 	  
 	  <ion-row>
-	     <ion-col>
+	   <ion-col>
 	       User Name:
-	     </ion-col>
+	   </ion-col>
 		 <ion-col>
-		   {{event.userName}}
+				{{event.userName}}
 		 </ion-col>
 	  </ion-row>
 	  
@@ -34,25 +38,24 @@
         <ion-col >
           Course Name:
         </ion-col>
-		    <ion-col>
-		      {{event.eventType}}
+		    <ion-col text-wrap>
+					{{event.eventType}}
 		    </ion-col>
       </ion-row> 
       
-	  <ion-row>
+	    <ion-row>
         <ion-col>
           Status:
-				</ion-col>
+		    </ion-col>
 		    <ion-col>
-				 {{event.eventStatus}}
+			      {{event.eventStatus}}
 				</ion-col>
 			</ion-row>
-			
 			<ion-row>
-				<ion-col>
-				    <button ion-button block clear [disabled]="!event.eventStatus=='awaiting'" (click)="changePaymentStatus(event.eventData)">
+				<ion-col text-center>
+				    <button ion-button small  [disabled]="event.eventStatus=='Paid'" (click)="changePaymentStatus(event.eventData)">
 							 Paid
-						</button>
+					</button>
 				</ion-col>
 			</ion-row>
 				
